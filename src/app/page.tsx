@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "./Button";
-import { Logo } from "./Logo";
 import { DownArrowIcon } from "./DownArrowIcon";
-import { Card, CardImage, CardBody } from "./Card";
+import { Card } from "./Card";
 import { useState, useEffect, useRef } from "react";
 
 // Custom hook for intersection observer
@@ -124,8 +122,7 @@ function AboutTeaser() {
 }
 
 export default function Home() {
-  const [showRest, setShowRest] = useState(false);
-  const [popularRef, popularInView] = useInView();
+  const [aboutRef, aboutInView] = useInView();
 
   useEffect(() => {
     const onScroll = () => {
@@ -183,7 +180,13 @@ export default function Home() {
             {/* Butter Chicken Card */}
             <Card className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(255,170,51,0.15)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
               <div className="relative w-full h-56 overflow-hidden">
-                <img src="/images/butter-chicken-thumb.jpg" alt="Butter Chicken" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 rounded-t-3xl" />
+                <Image
+                  src="/images/butter-chicken-thumb.jpg"
+                  alt="Butter Chicken"
+                  width={400}
+                  height={224}
+                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 rounded-t-3xl"
+                />
                 <div className="absolute top-3 left-3 bg-[#FFAA33] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Chef's Choice</div>
               </div>
               <div className="p-6 flex flex-col items-center gap-3">
@@ -196,7 +199,13 @@ export default function Home() {
             {/* Palak Paneer Card */}
             <Card className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(128,0,0,0.10)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
               <div className="relative w-full h-56 overflow-hidden">
-                <img src="/images/palak-paneer-thumb.jpg" alt="Palak Paneer" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 rounded-t-3xl" />
+                <Image
+                  src="/images/palak-paneer-thumb.jpg"
+                  alt="Palak Paneer"
+                  width={400}
+                  height={224}
+                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 rounded-t-3xl"
+                />
                 <div className="absolute top-3 left-3 bg-[#800000] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Vegetarian</div>
               </div>
               <div className="p-6 flex flex-col items-center gap-3">
@@ -209,7 +218,13 @@ export default function Home() {
             {/* Chole Bhature Card */}
             <Card className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(255,170,51,0.10)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
               <div className="relative w-full h-56 overflow-hidden">
-                <img src="/images/chole-bhature-thumb.jpg" alt="Chole Bhature" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 rounded-t-3xl" />
+                <Image
+                  src="/images/chole-bhature-thumb.jpg"
+                  alt="Chole Bhature"
+                  width={400}
+                  height={224}
+                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 rounded-t-3xl"
+                />
                 <div className="absolute top-3 left-3 bg-[#FFAA33] text-[#800000] text-xs font-bold px-3 py-1 rounded-full shadow-lg">Most Loved</div>
               </div>
               <div className="p-6 flex flex-col items-center gap-3">

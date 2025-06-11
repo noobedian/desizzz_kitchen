@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "../Button";
-import { Card, CardImage, CardBody } from "../Card";
+import Link from "next/link";
+import { Card } from "../Card";
 
 function MenuPage() {
 	const [showToday, setShowToday] = useState(true);
@@ -45,6 +45,15 @@ function MenuPage() {
 							</button>
 						</div>
 					</div>
+					{/* Add a note for Today's Menu */}
+					{showToday && (
+						<div className="mb-8 text-center">
+							<p className="text-[#800000] text-lg font-semibold">
+								Our chefs prepare a fresh selection of curries every day.<br />
+								<span className="text-[#FFAA33]">Ask us for today&apos;s specials or check below!</span>
+							</p>
+						</div>
+					)}
 					<div className="space-y-16">
 						{menuToShow.map((section) => (
 							<section key={section.title}>
@@ -95,60 +104,149 @@ function MenuPage() {
 
 const sections = [
 	{
-		title: "Meal Dealzzz",
+		title: "STUDENT MEALZZZ",
 		dishes: [
 			{
-				name: "Butter Chicken Meal",
-				price: "$15.99",
-				img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
-				desc: "Butter chicken, naan, rice, salad, and drink.",
-				tags: ["Non-Veg", "Combo", "Popular"],
+				name: "Veg Meal",
+				price: "$10",
+				desc: "2 Curries + 4 Roti + Salad or 2 Curries + 2 Roti + Rice + Salad",
+				tags: ["Veg"],
+				img: "/images/veg-meal.jpg",
 			},
 			{
-				name: "Veg Thali",
-				price: "$13.99",
-				img: "https://images.unsplash.com/photo-1600628422019-6c1a9b7b8c5e?auto=format&fit=crop&w=400&q=80",
-				desc: "Assorted vegetarian curries, rice, naan, dessert.",
-				tags: ["Veg", "Combo"],
+				name: "Non-Veg Meal",
+				price: "$12",
+				desc: "2 Curries + 4 Roti + Salad or 2 Curries + 2 Roti + Rice + Salad",
+				tags: ["Non-Veg"],
+				img: "/images/nonveg-meal.jpg",
 			},
 		],
 	},
 	{
-		title: "Rolzzz",
+		title: "ROLLZZZ",
 		dishes: [
 			{
-				name: "Paneer Tikka Roll",
-				price: "$8.99",
-				img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
-				desc: "Grilled paneer, veggies, tangy sauce in a wrap.",
-				tags: ["Veg", "Snack"],
+				name: "Paneer Roll",
+				price: "$12",
+				desc: "",
+				tags: ["Veg"],
+				img: "/images/paneer-roll.jpg",
 			},
 			{
-				name: "Chicken Seekh Roll",
-				price: "$9.99",
-				img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80",
-				desc: "Spiced chicken seekh, onions, mint chutney in a roll.",
-				tags: ["Non-Veg", "Snack"],
+				name: "Soya Chaap Roll",
+				price: "$12",
+				desc: "",
+				tags: ["Veg"],
+				img: "/images/soya-chaap-roll.jpg",
+			},
+			{
+				name: "Chicken Roll",
+				price: "$12",
+				desc: "",
+				tags: ["Non-Veg"],
+				img: "/images/chicken-roll.jpg",
 			},
 		],
 	},
 	{
-		title: "Classic Curries",
+		title: "BIRYANIzzz",
 		dishes: [
 			{
-				name: "Chole Bhature",
-				price: "$10.99",
-				img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
-				desc: "Spiced chickpeas with fluffy fried bread.",
-				tags: ["Veg", "Popular"],
+				name: "Veg Biryani",
+				price: "$14",
+				desc: "",
+				tags: ["Veg"],
+				img: "/images/veg-biryani.jpg",
 			},
 			{
-				name: "Rajma Chawal",
-				price: "$9.99",
-				img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80",
-				desc: "Kidney beans curry with steamed rice.",
-				tags: ["Veg", "Comfort Food"],
+				name: "Chicken Biryani",
+				price: "$16",
+				desc: "",
+				tags: ["Non-Veg"],
+				img: "/images/chicken-biryani.jpg",
 			},
+			{
+				name: "Goat Biryani",
+				price: "$16",
+				desc: "",
+				tags: ["Non-Veg"],
+				img: "/images/goat-biryani.jpg",
+			},
+		],
+	},
+	{
+		title: "ENTREEZZZ",
+		dishes: [
+			{ name: "Soya Malai Chaap", price: "$10", desc: "", tags: ["Veg", "🌱"], img: "/images/soya-malai-chaap.jpg" },
+			{ name: "Achari Chaap", price: "$10", desc: "", tags: ["Veg", "🌱"], img: "/images/achari-chaap.jpg" },
+			{ name: "Chilli Paneer", price: "$15", desc: "", tags: ["Veg", "🌱"], img: "/images/chilli-paneer.jpg" },
+			{ name: "Paneer Tikka", price: "$15", desc: "", tags: ["Veg", "🌱"], img: "/images/paneer-tikka.jpg" },
+			{ name: "Samosa Chaat", price: "$8", desc: "", tags: ["Veg", "🌱"], img: "/images/samosa-chaat.jpg" },
+			{ name: "Samosa", price: "$2.50", desc: "", tags: ["Veg", "🌱"], img: "/images/samosa.jpg" },
+			{ name: "Chicken Tikka", price: "$15", desc: "", tags: ["Non-Veg"], img: "/images/chicken-tikka.jpg" },
+			{ name: "Malai Tikka", price: "$15", desc: "", tags: ["Non-Veg"], img: "/images/malai-tikka.jpg" },
+			{ name: "Tandoori Chicken", price: "$12/$18", desc: "", tags: ["Non-Veg"], img: "/images/tandoori-chicken.jpg" },
+			{ name: "Pepper Chicken", price: "$15", desc: "", tags: ["Non-Veg"], img: "/images/pepper-chicken.jpg" },
+			{ name: "Afghani Chicken", price: "$15", desc: "", tags: ["Non-Veg"], img: "/images/afghani-chicken.jpg" },
+			{ name: "Chilli Chicken", price: "$15", desc: "", tags: ["Non-Veg"], img: "/images/chilli-chicken.jpg" },
+			{ name: "Lamb Seekh Kebab", price: "$15", desc: "", tags: ["Non-Veg"], img: "/images/lamb-seekh.jpg" },
+			{ name: "Achari Seekh Kebab", price: "$15", desc: "", tags: ["Non-Veg"], img: "/images/achari-seekh.jpg" },
+			{ name: "Amritsari Fish", price: "$15", desc: "", tags: ["Non-Veg"], img: "/images/amritsari-fish.jpg" },
+			{ name: "Tawa Goat", price: "$22", desc: "", tags: ["Non-Veg"], img: "/images/tawa-goat.jpg" },
+			{ name: "Tawa Chicken", price: "$18", desc: "", tags: ["Non-Veg"], img: "/images/tawa-chicken.jpg" },
+			{ name: "Seekh Platter", price: "$22", desc: "", tags: ["Non-Veg"], img: "/images/seekh-platter.jpg" },
+		],
+	},
+	{
+		title: "BREADZZZ",
+		dishes: [
+			{ name: "Roti", price: "$1.5", desc: "", tags: ["Veg"], img: "/images/roti.jpg" },
+			{ name: "Plain Naan", price: "$3", desc: "", tags: ["Veg"], img: "/images/plain-naan.jpg" },
+			{ name: "Garlic Naan", price: "$4", desc: "", tags: ["Veg"], img: "/images/garlic-naan.jpg" },
+			{ name: "Tandoori Roti", price: "$3", desc: "", tags: ["Veg"], img: "/images/tandoori-roti.jpg" },
+			{ name: "Cheese Naan", price: "$5", desc: "", tags: ["Veg"], img: "/images/cheese-naan.jpg" },
+			{ name: "Chicken Cheese Naan", price: "$6", desc: "", tags: ["Non-Veg"], img: "/images/chicken-cheese-naan.jpg" },
+			{ name: "Cheese Garlic Naan", price: "$6", desc: "", tags: ["Veg"], img: "/images/cheese-garlic-naan.jpg" },
+			{ name: "Laccha Paratha", price: "$5", desc: "", tags: ["Veg"], img: "/images/laccha-paratha.jpg" },
+		],
+	},
+	{
+		title: "BREAKFASTZZZ",
+		dishes: [
+			{ name: "Amritsari Kulcha", price: "$10", desc: "", tags: ["Veg"], img: "/images/amritsari-kulcha.jpg" },
+			{ name: "Chole Bhature", price: "$10", desc: "", tags: ["Veg"], img: "/images/chole-bhature.jpg" },
+			{ name: "Poori Chole", price: "$15", desc: "", tags: ["Veg"], img: "/images/poori-chole.jpg" },
+			{ name: "Parantha (2 Pieces) (With Butter and Pickle)", price: "$10", desc: "", tags: ["Veg"], img: "/images/parantha.jpg" },
+		],
+	},
+	{
+		title: "SWEETZZZ",
+		dishes: [
+			{ name: "Gulab Jamun (2 pieces)", price: "$5", desc: "", tags: ["Veg"], img: "/images/gulab-jamun.jpg" },
+			{ name: "Halwa", price: "$5", desc: "", tags: ["Veg"], img: "/images/halwa.jpg" },
+			{ name: "Rasmalai", price: "$6", desc: "", tags: ["Veg"], img: "/images/rasmalai.jpg" },
+		],
+	},
+	{
+		title: "EXTRAZZZ",
+		dishes: [
+			{ name: "Achar", price: "$2", desc: "", tags: ["Veg"], img: "/images/achar.jpg" },
+			{ name: "Salad", price: "$3", desc: "", tags: ["Veg"], img: "/images/salad.jpg" },
+			{ name: "Mint Yogurt Sauce", price: "$2", desc: "", tags: ["Veg"], img: "/images/mint-yogurt.jpg" },
+			{ name: "Mint Sauce", price: "$2", desc: "", tags: ["Veg"], img: "/images/mint-sauce.jpg" },
+			{ name: "Rice", price: "$4", desc: "", tags: ["Veg"], img: "/images/rice.jpg" },
+			{ name: "Home Style Tea", price: "$3", desc: "", tags: ["Veg"], img: "/images/tea.jpg" },
+		],
+	},
+	{
+		title: "DRINKZZZ",
+		dishes: [
+			{ name: "Water", price: "$2", desc: "", tags: [], img: "/images/water.jpg" },
+			{ name: "Soft Drink", price: "$3", desc: "", tags: [], img: "/images/soft-drink.jpg" },
+			{ name: "Energy Drink", price: "$4", desc: "", tags: [], img: "/images/energy-drink.jpg" },
+			{ name: "Mango Lassi", price: "$4", desc: "", tags: ["Veg"], img: "/images/mango-lassi.jpg" },
+			{ name: "Sweet Lassi", price: "$4", desc: "", tags: ["Veg"], img: "/images/sweet-lassi.jpg" },
+			{ name: "Namkeen Lassi", price: "$4", desc: "", tags: ["Veg"], img: "/images/namkeen-lassi.jpg" },
 		],
 	},
 ];
