@@ -43,10 +43,14 @@ export default function TodaysMenuAdmin() {
 	const removeDish = (idx: number) =>
 		setDishes((dishes) => dishes.filter((_, i) => i !== idx));
 
-	const handleSave = (e: React.FormEvent) => {
+	const handleSave = async (e: React.FormEvent) => {
 		e.preventDefault();
-		alert("Today's menu saved!\n" + JSON.stringify(dishes, null, 2));
-		// TODO: Save to backend or file
+		await fetch("/api/todays-menu", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ menu: dishes }),
+		});
+		alert("Today's menu updated!");
 	};
 
 	return (

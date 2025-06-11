@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-let todaysMenu: any[] = []; // In-memory for demo/testing
+let todaysMenu: any[] = []; // In-memory for demo; resets on serverless cold start
 
 export async function GET() {
   return NextResponse.json({ menu: todaysMenu });

@@ -1,11 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardBody, CardImage } from "../Card";
 
 function MenuPage() {
 	const [showToday, setShowToday] = useState(true);
+	const [todaysMenu, setTodaysMenu] = useState<{ title: string; dishes: any[] }[]>([]);
 	const menuToShow = showToday ? todaysMenu : sections;
+
+	useEffect(() => {
+		if (showToday) {
+			fetch("/api/todays-menu")
+				.then(res => res.json())
+				.then(data => setTodaysMenu(data.menu?.length ? data.menu : []));
+		}
+	}, [showToday]);
+
 	return (
 		<>
 			<main className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-100 p-6">
@@ -68,7 +78,7 @@ function MenuPage() {
 											<div className="relative">
 												<CardImage src={dish.img} alt={dish.name} />
 												<div className="absolute top-2 right-2 flex gap-1">
-													{dish.tags.map((tag) => (
+													{dish.tags.map((tag: string) => (
 														<span
 															key={tag}
 															className="bg-[#FFF8E7] text-[#800000] text-xs px-2 py-0.5 rounded-full shadow-sm font-semibold"
@@ -246,28 +256,6 @@ const sections = [
 			{ name: "Mango Lassi", price: "$4", desc: "", tags: ["Veg"], img: "/images/mango-lassi.jpg" },
 			{ name: "Sweet Lassi", price: "$4", desc: "", tags: ["Veg"], img: "/images/sweet-lassi.jpg" },
 			{ name: "Namkeen Lassi", price: "$4", desc: "", tags: ["Veg"], img: "/images/namkeen-lassi.jpg" },
-		],
-	},
-];
-
-const todaysMenu = [
-	{
-		title: "Today's Specials",
-		dishes: [
-			{
-				name: "Butter Chicken Meal",
-				price: "$15.99",
-				img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
-				desc: "Butter chicken, naan, rice, salad, and drink.",
-				tags: ["Non-Veg", "Combo", "Popular"],
-			},
-			{
-				name: "Paneer Tikka Roll",
-				price: "$8.99",
-				img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
-				desc: "Grilled paneer, veggies, tangy sauce in a wrap.",
-				tags: ["Veg", "Snack"],
-			},
 		],
 	},
 ];
