@@ -7,14 +7,14 @@ export function Card({ className = "", ...props }: React.HTMLAttributes<HTMLDivE
   );
 }
 
-export function CardImage({ src, alt }: { src: string; alt: string }) {
+export function CardImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
   return (
     <Image
       src={src}
       alt={alt}
       width={400}
       height={224}
-      className="object-cover w-full h-full"
+      className={className}
     />
   );
 }
