@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 const KEY = "todays-menu";
 
 export async function GET() {
+  // Only return the menu if it exists and is valid, otherwise return an empty array (not a fallback section)
   const menu = await kv.get(KEY);
-  // Ensure menu is always a valid array of sections with dishes
   if (
     Array.isArray(menu) &&
     menu.every(
@@ -17,8 +17,8 @@ export async function GET() {
   ) {
     return NextResponse.json({ menu });
   }
-  // fallback
-  return NextResponse.json({ menu: [{ title: "Today's Specials", dishes: [] }] });
+  // If nothing is set, return an empty array (no default/fallback section)
+  return NextResponse.json({ menu: [] });
 }
 
 export async function POST(req: Request) {
