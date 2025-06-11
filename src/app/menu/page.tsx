@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Card } from "../Card";
+import { Card, CardBody, CardImage } from "../Card";
 
 function MenuPage() {
 	const [showToday, setShowToday] = useState(true);

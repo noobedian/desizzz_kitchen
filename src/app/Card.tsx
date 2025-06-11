@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 
 export function Card({ className = "", ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
@@ -8,7 +9,13 @@ export function Card({ className = "", ...props }: React.HTMLAttributes<HTMLDivE
 
 export function CardImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <img src={src} alt={alt} className="w-full h-48 object-cover" />
+    <Image
+      src={src}
+      alt={alt}
+      width={400}
+      height={224}
+      className="object-cover w-full h-full"
+    />
   );
 }
 

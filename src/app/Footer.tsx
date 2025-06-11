@@ -1,6 +1,7 @@
 import { Logo } from "./Logo";
 import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { AccordionSection } from "./AccordionSection"; 
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -29,12 +30,12 @@ export function Footer() {
                   { label: "Contact", href: "#contact" },
                 ].map((item) => (
                   <li key={item.label}>
-                    <a
+                    <Link
                       href={item.href}
-                      className="hover:underline hover:underline-offset-4 transition-colors"
+                      className="text-[#800000] hover:text-white hover:bg-[#FFAA33] transition font-medium rounded px-2 py-1"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -114,7 +115,9 @@ export function Footer() {
                 <li>Saturday: 12:00 PM – 11:00 PM</li>
                 <li>Sunday: 12:00 PM – 9:00 PM</li>
               </ul>
-            </div>
+            </div>            git add src/app/Card.tsx src/app/Footer.tsx src/app/globals.css src/app/menu/page.tsx src/app/page.tsx
+            git commit -m "Update code and fix lint errors"
+            git push origin main
 
             {/* Mobile */}
             <div className="block md:hidden">

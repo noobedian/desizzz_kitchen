@@ -2,8 +2,8 @@
 
 import { Button } from "./Button";
 import { DownArrowIcon } from "./DownArrowIcon";
-import { Card } from "./Card";
 import { useState, useEffect, useRef } from "react";
+import Image from 'next/image';
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.15) {
@@ -124,14 +124,6 @@ function AboutTeaser() {
 export default function Home() {
   const [aboutRef, aboutInView] = useInView();
 
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 10) setShowRest(true);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <div className="overflow-y-auto snap-y snap-proximity">
       {/* Hero Section */}
@@ -178,7 +170,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {/* Butter Chicken Card */}
-            <Card className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(255,170,51,0.15)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
+            <div className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(255,170,51,0.15)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
               <div className="relative w-full h-56 overflow-hidden">
                 <Image
                   src="/images/butter-chicken-thumb.jpg"
@@ -195,9 +187,9 @@ export default function Home() {
                 <p className="text-gray-700 text-sm text-center max-w-xs">Creamy tomato gravy, tender chicken, and a hint of spice. A true North Indian classic!</p>
                 {/* Removed View Details Button */}
               </div>
-            </Card>
+            </div>
             {/* Palak Paneer Card */}
-            <Card className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(128,0,0,0.10)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
+            <div className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(128,0,0,0.10)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
               <div className="relative w-full h-56 overflow-hidden">
                 <Image
                   src="/images/palak-paneer-thumb.jpg"
@@ -214,9 +206,9 @@ export default function Home() {
                 <p className="text-gray-700 text-sm text-center max-w-xs">Fresh spinach and soft paneer cubes in a silky, spiced sauce. Healthy and delicious!</p>
                 {/* Removed View Details Button */}
               </div>
-            </Card>
+            </div>
             {/* Chole Bhature Card */}
-            <Card className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(255,170,51,0.10)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
+            <div className="group relative bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_8px_32px_0_rgba(255,170,51,0.10)] border border-orange-100 overflow-hidden hover:scale-105 hover:shadow-2xl transition-transform duration-300 w-full">
               <div className="relative w-full h-56 overflow-hidden">
                 <Image
                   src="/images/chole-bhature-thumb.jpg"
@@ -233,7 +225,7 @@ export default function Home() {
                 <p className="text-gray-700 text-sm text-center max-w-xs">Fluffy bhature with spicy chickpea curry. The ultimate comfort street food!</p>
                 {/* Removed View Details Button */}
               </div>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
