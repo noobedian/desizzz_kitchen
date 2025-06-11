@@ -3,7 +3,7 @@
 import { Button } from "./Button";
 import { DownArrowIcon } from "./DownArrowIcon";
 import { useState, useEffect, useRef } from "react";
-import Image from 'next/image';
+import Image from "next/image";
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.15) {
@@ -179,13 +179,12 @@ export default function Home() {
                   height={224}
                   className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 rounded-t-3xl"
                 />
-                <div className="absolute top-3 left-3 bg-[#FFAA33] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Chef's Choice</div>
+                <div className="absolute top-3 left-3 bg-[#FFAA33] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Chef&apos;s Choice</div>
               </div>
               <div className="p-6 flex flex-col items-center gap-3">
                 <h3 className="font-bold text-xl text-[#800000] tracking-wide">Butter Chicken</h3>
                 <p className="text-[#FFAA33] text-lg font-semibold">$13.99</p>
                 <p className="text-gray-700 text-sm text-center max-w-xs">Creamy tomato gravy, tender chicken, and a hint of spice. A true North Indian classic!</p>
-                {/* Removed View Details Button */}
               </div>
             </div>
             {/* Palak Paneer Card */}
@@ -204,7 +203,6 @@ export default function Home() {
                 <h3 className="font-bold text-xl text-[#800000] tracking-wide">Palak Paneer</h3>
                 <p className="text-[#FFAA33] text-lg font-semibold">$11.99</p>
                 <p className="text-gray-700 text-sm text-center max-w-xs">Fresh spinach and soft paneer cubes in a silky, spiced sauce. Healthy and delicious!</p>
-                {/* Removed View Details Button */}
               </div>
             </div>
             {/* Chole Bhature Card */}
@@ -223,7 +221,6 @@ export default function Home() {
                 <h3 className="font-bold text-xl text-[#800000] tracking-wide">Chole Bhature</h3>
                 <p className="text-[#FFAA33] text-lg font-semibold">$10.99</p>
                 <p className="text-gray-700 text-sm text-center max-w-xs">Fluffy bhature with spicy chickpea curry. The ultimate comfort street food!</p>
-                {/* Removed View Details Button */}
               </div>
             </div>
           </div>

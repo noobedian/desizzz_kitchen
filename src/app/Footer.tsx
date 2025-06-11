@@ -52,12 +52,12 @@ export function Footer() {
                     { label: "Contact", href: "#contact" },
                   ].map((item) => (
                     <li key={item.label}>
-                      <a
+                      <Link
                         href={item.href}
                         className="hover:underline hover:text-[#FFAA33] transition"
                       >
                         {item.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -115,9 +115,7 @@ export function Footer() {
                 <li>Saturday: 12:00 PM – 11:00 PM</li>
                 <li>Sunday: 12:00 PM – 9:00 PM</li>
               </ul>
-            </div>            git add src/app/Card.tsx src/app/Footer.tsx src/app/globals.css src/app/menu/page.tsx src/app/page.tsx
-            git commit -m "Update code and fix lint errors"
-            git push origin main
+            </div>            
 
             {/* Mobile */}
             <div className="block md:hidden">
