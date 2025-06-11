@@ -5,7 +5,15 @@ const KEY = "todays-menu";
 
 export async function GET() {
   try {
-    const menu = await kv.get(KEY);
+    // Vercel KV returns JSON strings, so parse if needed
+    let menu = await kv.get(KEY);
+    if (typeof menu === "string") {
+      try {
+        menu = JSON.parse(menu);
+      } catch {
+        menu = [];
+      }
+    }
     if (
       Array.isArray(menu) &&
       menu.every(
@@ -37,7 +45,8 @@ export async function POST(req: Request) {
           Array.isArray(section.dishes)
       )
     ) {
-      await kv.set(KEY, data.menu);
+      // Always store as a JSON string for safety
+      await kv.set(KEY, JSON.stringify(data.menu));
       return NextResponse.json({ success: true });
     }
     return NextResponse.json({ success: false, error: "Invalid menu structure" }, { status: 400 });
