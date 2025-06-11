@@ -2,14 +2,8 @@
 
 import { useState } from "react";
 
-// Example: Pre-fill with a sample dish for easier editing/updating
-const initialDishes: {
-	name: string;
-	price: string;
-	desc: string;
-	img: string;
-	tags: string[];
-}[] = [
+// Always POST the correct structure: [{ title: "Today's Specials", dishes: [...] }]
+const initialDishes = [
 	{
 		name: "Butter Chicken Meal",
 		price: "$15.99",
@@ -45,10 +39,11 @@ export default function TodaysMenuAdmin() {
 
 	const handleSave = async (e: React.FormEvent) => {
 		e.preventDefault();
+		// Always POST as [{ title: "Today's Specials", dishes }]
 		await fetch("/api/todays-menu", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ menu: dishes }),
+			body: JSON.stringify({ menu: [{ title: "Today's Specials", dishes }] }),
 		});
 		alert("Today's menu updated!");
 	};

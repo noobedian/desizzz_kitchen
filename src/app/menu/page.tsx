@@ -6,13 +6,20 @@ import { Card, CardBody, CardImage } from "../Card";
 function MenuPage() {
 	const [showToday, setShowToday] = useState(true);
 	const [todaysMenu, setTodaysMenu] = useState<{ title: string; dishes: any[] }[]>([]);
-	const menuToShow = showToday ? todaysMenu : sections;
+	const menuToShow = showToday ? (todaysMenu.length ? todaysMenu : [{ title: "Today's Specials", dishes: [] }]) : sections;
 
 	useEffect(() => {
 		if (showToday) {
 			fetch("/api/todays-menu")
 				.then(res => res.json())
-				.then(data => setTodaysMenu(data.menu?.length ? data.menu : []));
+				.then(data => {
+					if (Array.isArray(data.menu) && data.menu.length > 0) {
+						setTodaysMenu(data.menu);
+					} else {
+						setTodaysMenu([{ title: "Today's Specials", dishes: [] }]);
+					}
+				})
+				.catch(() => setTodaysMenu([{ title: "Today's Specials", dishes: [] }]));
 		}
 	}, [showToday]);
 
@@ -78,7 +85,7 @@ function MenuPage() {
 											<div className="relative">
 												<CardImage src={dish.img} alt={dish.name} />
 												<div className="absolute top-2 right-2 flex gap-1">
-													{dish.tags.map((tag: string) => (
+													{dish.tags?.map((tag: string) => (
 														<span
 															key={tag}
 															className="bg-[#FFF8E7] text-[#800000] text-xs px-2 py-0.5 rounded-full shadow-sm font-semibold"
