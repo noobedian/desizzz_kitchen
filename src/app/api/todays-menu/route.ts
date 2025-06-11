@@ -1,13 +1,17 @@
+import { kv } from "@vercel/kv";
 import { NextResponse } from "next/server";
 
-let todaysMenu: any[] = []; // In-memory for demo; resets on serverless cold start
+const KEY = "todays-menu";
 
 export async function GET() {
-  return NextResponse.json({ menu: todaysMenu });
+  const menu = await kv.get(KEY);
+  return NextResponse.json({ menu: menu || [{ title: "Today's Specials", dishes: [] }] });
 }
 
 export async function POST(req: Request) {
   const data = await req.json();
-  todaysMenu = data.menu;
+  if (Array.isArray(data.menu)) {
+    await kv.set(KEY, data.menu);
+  }
   return NextResponse.json({ success: true });
 }
