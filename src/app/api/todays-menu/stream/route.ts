@@ -1,10 +1,10 @@
-import { kv } from "@vercel/kv";
+import kv from "@vercel/kv";
 import { headers } from "next/headers";
 
 export const runtime = "edge";
 
 export async function GET() {
-  const headersList = headers();
+  const headersList = await headers();
   const accept = headersList.get("accept");
 
   if (accept?.includes("text/event-stream")) {
@@ -25,10 +25,15 @@ export async function GET() {
         // Send initial menu
         await sendMenu();
 
-        // Subscribe to menu updates
-        const unsubscribe = await kv.subscribe("todays-menu-updates", async () => {
+        // Poll for updates every 5 seconds
+        const interval = setInterval(async () => {
           await sendMenu();
-        });
+        }, 5000);
+
+        // Cleanup on close
+        return () => {
+          clearInterval(interval);
+        };
       }
     });
 
