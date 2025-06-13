@@ -1,4 +1,4 @@
-import { kv } from "@vercel/kv";
+import kv from "@vercel/kv";
 import { NextResponse } from "next/server";
 
 const KEY = "todays-menu";
