@@ -1,4 +1,4 @@
-"use client";
+"@vercel/kv": "^1.2.0""use client";
 
 import { useEffect, useState } from "react";
 
