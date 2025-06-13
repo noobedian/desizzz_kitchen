@@ -45,8 +45,9 @@ export async function POST(req: Request) {
           Array.isArray(section.dishes)
       )
     ) {
-      // Always store as a JSON string for safety
       await kv.set(KEY, JSON.stringify(data.menu));
+      // Publish update event
+      await kv.publish("todays-menu-updates", "update");
       return NextResponse.json({ success: true });
     }
     return NextResponse.json({ success: false, error: "Invalid menu structure" }, { status: 400 });

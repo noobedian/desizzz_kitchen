@@ -2,20 +2,29 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AdminDashboard() {
   const [menu, setMenu] = useState<{ title: string; dishes: any[] }[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch current menu on load
   useEffect(() => {
-    fetch("/api/todays-menu")
-      .then(res => res.json())
-      .then(data => {
-        setMenu(Array.isArray(data.menu) ? data.menu : []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    const eventSource = new EventSource("/api/todays-menu/stream");
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setMenu(Array.isArray(data.menu) ? data.menu : []);
+      setLoading(false);
+    };
+
+    eventSource.onerror = () => {
+      eventSource.close();
+      setLoading(false);
+    };
+
+    return () => {
+      eventSource.close();
+    };
   }, []);
 
   return (
@@ -52,12 +61,12 @@ export default function AdminDashboard() {
               </ul>
             </div>
           ))}
-          <a
+          <Link
             href="/admin/todays-menu"
             className="inline-block mt-6 bg-[#800000] text-white px-4 py-2 rounded font-semibold hover:bg-[#a83232] transition"
           >
-            Edit Today's Menu
-          </a>
+            Edit Today&apos;s Menu
+          </Link>
         </>
       )}
     </main>
