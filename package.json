@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npm rebuild lightningcss"
+    "postinstall": "cp node_modules/lightningcss-linux-x64-gnu/lightningcss.linux-x64-gnu.node node_modules/lightningcss/lightningcss.linux-x64-gnu.node || true && cp node_modules/lightningcss-linux-x64-musl/lightningcss.linux-x64-musl.node node_modules/lightningcss/lightningcss.linux-x64-musl.node || true"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.0",
@@ -47,5 +47,9 @@
     "tailwindcss": "^4.1.8",
     "tsx": "^4.19.4",
     "typescript": "^5"
+  },
+  "optionalDependencies": {
+    "lightningcss-linux-x64-gnu": "^1.4.0",
+    "lightningcss-linux-x64-musl": "^1.4.0"
   }
 }
