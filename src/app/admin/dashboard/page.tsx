@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function AdminDashboard() {
   const [menu, setMenu] = useState<{ title: string; dishes: any[] }[]>([]);
@@ -38,7 +39,13 @@ export default function AdminDashboard() {
                       {dish.desc && <span className="ml-2 text-gray-600 text-sm">{dish.desc}</span>}
                     </span>
                     {dish.img && (
-                      <img src={dish.img} alt={dish.name} className="w-24 h-16 object-cover rounded mt-2 md:mt-0" />
+                      <Image
+                        src={dish.img}
+                        alt={dish.name}
+                        width={96} // 24*4
+                        height={64} // 16*4
+                        className="w-24 h-16 object-cover rounded mt-2 md:mt-0"
+                      />
                     )}
                   </li>
                 ))}
